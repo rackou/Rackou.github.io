@@ -4,14 +4,6 @@
     --background: #f8f9fa;
 }
 
-/* Definir la fuente personalizada */
-@font-face {
-    font-family: 'Asimilates';
-    src: url('fonts/asimilates-Regular.ttf') format('truetype'); /* Ruta corregida */
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
     font-family: 'Segoe UI', system-ui, sans-serif;
     background: var(--background);
@@ -35,9 +27,7 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* Aplicar la fuente personalizada al título */
 h1 {
-    font-family: 'Asimilates', sans-serif; /* Usa la fuente personalizada */
     text-align: center;
     color: var(--primary);
     margin: 2rem 0;
