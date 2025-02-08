@@ -7,7 +7,7 @@
 /* Definir la fuente personalizada */
 @font-face {
     font-family: 'Asimilates';
-    src: url('fonts/asimilates-Regular.ttf') format('truetype'); /* Ruta al archivo de la fuente */
+    src: url('fonts/asimilates-Regular.ttf') format('truetype'); /* Ruta corregida */
     font-weight: normal;
     font-style: normal;
 }
