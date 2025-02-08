@@ -103,4 +103,11 @@ th {
     .container {
         grid-template-columns: 1fr 1fr;
     }
+
+.permanent-marker-regular {
+  font-family: "Permanent Marker", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 }
