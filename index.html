@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor Avanzado de Temperatura</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>🌡 Conversor Avanzado de Temperatura</h1>
+
+    <div class="container">
+        <div class="converter-box">
+            <div class="converter-group">
+                <label for="inputTemp">Temperatura de entrada:</label>
+                <input type="number" id="inputTemp" placeholder="Ej: 100" step="0.01">
+            </div>
+
+            <div class="converter-group">
+                <label for="fromScale">Escala origen:</label>
+                <select id="fromScale">
+                    <option value="celsius">Celsius (°C)</option>
+                    <option value="fahrenheit">Fahrenheit (°F)</option>
+                    <option value="rankine">Rankine (°R)</option>
+                    <option value="kelvin">Kelvin (K)</option>
+                </select>
+            </div>
+
+            <div class="converter-group">
+                <label for="toScale">Escala destino:</label>
+                <select id="toScale">
+                    <option value="celsius">Celsius (°C)</option>
+                    <option value="fahrenheit">Fahrenheit (°F)</option>
+                    <option value="rankine">Rankine (°R)</option>
+                    <option value="kelvin">Kelvin (K)</option>
+                </select>
+            </div>
+
+            <button onclick="convertTemperature()">Convertir 🔄</button>
+            <div class="result" id="result"></div>
+        </div>
+
+        <div class="table-box">
+            <h2>📊 Tabla de Fórmulas de Conversión</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Desde \ Hacia</th>
+                        <th>Celsius (°C)</th>
+                        <th>Fahrenheit (°F)</th>
+                        <th>Rankine (°R)</th>
+                        <th>Kelvin (K)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Celsius</strong></td>
+                        <td>-</td>
+                        <td class="math-formula">👦F = \frac{9}{5}C + 32👦</td>
+                        <td class="math-formula">👦R = \frac{9}{5}(C + 273.15)👦</td>
+                        <td class="math-formula">👦K = C + 273.15👦</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fahrenheit</strong></td>
+                        <td class="math-formula">👦C = \frac{5}{9}(F - 32)👦</td>
+                        <td>-</td>
+                        <td class="math-formula">👦R = F + 459.67👦</td>
+                        <td class="math-formula">👦K = \frac{5}{9}(F + 459.67)👦</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rankine</strong></td>
+                        <td class="math-formula">👦C = \frac{5}{9}(R - 491.67)👦</td>
+                        <td class="math-formula">👦F = R - 459.67👦</td>
+                        <td>-</td>
+                        <td class="math-formula">👦K = \frac{5}{9}R👦</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kelvin</strong></td>
+                        <td class="math-formula">👦C = K - 273.15👦</td>
+                        <td class="math-formula">👦F = \frac{9}{5}K - 459.67👦</td>
+                        <td class="math-formula">👦R = \frac{9}{5}K👦</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
