@@ -29,11 +29,19 @@
             gap: 2rem;
         }
 
-        .converter-box, .table-box {
+        .converter-box {
             background: white;
             padding: 2rem;
             border-radius: 1rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .table-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow-x: auto;
         }
 
         h1 {
@@ -63,6 +71,12 @@
             transition: all 0.3s ease;
         }
 
+        input:focus, select:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
         button {
             width: 100%;
             padding: 1rem;
@@ -77,6 +91,8 @@
 
         button:hover {
             background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
         }
 
         .result {
@@ -111,23 +127,18 @@
             background-color: #f8f9fa;
         }
 
-        @media (max-width: 1024px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
+        .math-formula {
+            font-size: 0.9rem;
+            color: #2c3e50;
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 1rem;
+            .container {
+                grid-template-columns: 1fr;
             }
-
+            
             .converter-box, .table-box {
                 padding: 1.5rem;
-            }
-
-            h1 {
-                font-size: 2rem;
             }
         }
     </style>
@@ -182,9 +193,30 @@
                     <tr>
                         <td><strong>Celsius</strong></td>
                         <td>-</td>
-                        <td>F = \frac{9}{5}C + 32</td>
-                        <td>R = \frac{9}{5}(C + 273.15)</td>
-                        <td>K = C + 273.15</td>
+                        <td class="math-formula">\( F = \frac{9}{5}C + 32 \)</td>
+                        <td class="math-formula">\( R = \frac{9}{5}(C + 273.15) \)</td>
+                        <td class="math-formula">\( K = C + 273.15 \)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fahrenheit</strong></td>
+                        <td class="math-formula">\( C = \frac{5}{9}(F - 32) \)</td>
+                        <td>-</td>
+                        <td class="math-formula">\( R = F + 459.67 \)</td>
+                        <td class="math-formula">\( K = \frac{5}{9}(F + 459.67) \)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rankine</strong></td>
+                        <td class="math-formula">\( C = \frac{5}{9}(R - 491.67) \)</td>
+                        <td class="math-formula">\( F = R - 459.67 \)</td>
+                        <td>-</td>
+                        <td class="math-formula">\( K = \frac{5}{9}R \)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kelvin</strong></td>
+                        <td class="math-formula">\( C = K - 273.15 \)</td>
+                        <td class="math-formula">\( F = \frac{9}{5}K - 459.67 \)</td>
+                        <td class="math-formula">\( R = \frac{9}{5}K \)</td>
+                        <td>-</td>
                     </tr>
                 </tbody>
             </table>
@@ -192,21 +224,6 @@
     </div>
 
     <script>
-        function detectDevice() {
-            const width = window.innerWidth;
-            let deviceType = "";
-
-            if (width > 1024) {
-                deviceType = "Computador";
-            } else if (width > 768) {
-                deviceType = "Tablet";
-            } else {
-                deviceType = "Celular";
-            }
-
-            console.log("Dispositivo detectado:", deviceType);
-        }
-
         function convertTemperature() {
             const inputTemp = parseFloat(document.getElementById("inputTemp").value);
             const fromScale = document.getElementById("fromScale").value;
@@ -217,6 +234,7 @@
                 return;
             }
 
+            // Conversión a Celsius primero
             let celsius;
             switch(fromScale) {
                 case 'celsius': celsius = inputTemp; break;
@@ -225,6 +243,7 @@
                 case 'kelvin': celsius = inputTemp - 273.15; break;
             }
 
+            // Conversión a escala destino
             let result;
             switch(toScale) {
                 case 'celsius': result = celsius; break;
@@ -233,10 +252,22 @@
                 case 'kelvin': result = celsius + 273.15; break;
             }
 
-            document.getElementById("result").innerHTML = `${inputTemp.toFixed(2)} ${fromScale} = <strong>${result.toFixed(2)} ${toScale}</strong>`;
-        }
+            // Formatear resultado
+            const scales = {
+                celsius: '°C',
+                fahrenheit: '°F',
+                rankine: '°R',
+                kelvin: 'K'
+            };
 
-        detectDevice();
+            const resultElement = document.getElementById("result");
+            resultElement.innerHTML = `
+                <div style="color: #27ae60; font-size: 1.4rem;">
+                    ${inputTemp.toFixed(2)} ${scales[fromScale]} = 
+                    <strong>${result.toFixed(2)} ${scales[toScale]}</strong>
+                </div>
+            `;
+        }
     </script>
 </body>
 </html>
