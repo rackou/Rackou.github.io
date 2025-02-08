@@ -1,0 +1,16 @@
+/* Definir la fuente personalizada */
+@font-face {
+    font-family: 'Asimilates';
+    src: url('fonts/Asimilates.ttf') format('truetype'); /* Ruta al archivo de la fuente */
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Aplicar la fuente al título */
+h1 {
+    font-family: 'Asimilates', sans-serif; /* Usa la fuente personalizada */
+    text-align: center;
+    color: var(--primary);
+    margin: 2rem 0;
+    font-size: 2.5rem;
+}
