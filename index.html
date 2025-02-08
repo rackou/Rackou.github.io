@@ -4,8 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor Avanzado de Temperatura</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="stylesheet" href="index.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --background: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, var(--background) 0%, #dfe6e9 100%);
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .converter-box, .table-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .converter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #bdc3c7;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .converter-box, .table-box {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>🌡️ Conversor Avanzado de Temperatura</h1>
@@ -61,32 +186,57 @@
                         <td>R = \frac{9}{5}(C + 273.15)</td>
                         <td>K = C + 273.15</td>
                     </tr>
-                    <tr>
-                        <td><strong>Fahrenheit</strong></td>
-                        <td>C = \frac{5}{9}(F - 32)</td>
-                        <td>-</td>
-                        <td>R = F + 459.67</td>
-                        <td>K = \frac{5}{9}(F + 459.67)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Rankine</strong></td>
-                        <td>C = \frac{5}{9}(R - 491.67)</td>
-                        <td>F = R - 459.67</td>
-                        <td>-</td>
-                        <td>K = \frac{5}{9}R</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Kelvin</strong></td>
-                        <td>C = K - 273.15</td>
-                        <td>F = \frac{9}{5}K - 459.67</td>
-                        <td>R = \frac{9}{5}K</td>
-                        <td>-</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <script src="index.js"></script>
+    <script>
+        function detectDevice() {
+            const width = window.innerWidth;
+            let deviceType = "";
+
+            if (width > 1024) {
+                deviceType = "Computador";
+            } else if (width > 768) {
+                deviceType = "Tablet";
+            } else {
+                deviceType = "Celular";
+            }
+
+            console.log("Dispositivo detectado:", deviceType);
+        }
+
+        function convertTemperature() {
+            const inputTemp = parseFloat(document.getElementById("inputTemp").value);
+            const fromScale = document.getElementById("fromScale").value;
+            const toScale = document.getElementById("toScale").value;
+
+            if (isNaN(inputTemp)) {
+                alert("Por favor ingresa un valor numérico válido");
+                return;
+            }
+
+            let celsius;
+            switch(fromScale) {
+                case 'celsius': celsius = inputTemp; break;
+                case 'fahrenheit': celsius = (inputTemp - 32) * 5/9; break;
+                case 'rankine': celsius = (inputTemp - 491.67) * 5/9; break;
+                case 'kelvin': celsius = inputTemp - 273.15; break;
+            }
+
+            let result;
+            switch(toScale) {
+                case 'celsius': result = celsius; break;
+                case 'fahrenheit': result = (celsius * 9/5) + 32; break;
+                case 'rankine': result = (celsius + 273.15) * 9/5; break;
+                case 'kelvin': result = celsius + 273.15; break;
+            }
+
+            document.getElementById("result").innerHTML = `${inputTemp.toFixed(2)} ${fromScale} = <strong>${result.toFixed(2)} ${toScale}</strong>`;
+        }
+
+        detectDevice();
+    </script>
 </body>
 </html>
