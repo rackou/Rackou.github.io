@@ -36,8 +36,14 @@ h1 {
        text-align:center;
        color: var(--primary);
        margin: 2rem 0;
-       font-size: 3rem;
+       font-size: 2.5rem;
    }
+
+.pacifico-regular {
+  font-family: "Pacifico", serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 /* 5. Resto de los estilos */
 .converter-group {
