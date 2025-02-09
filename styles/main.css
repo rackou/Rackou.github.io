@@ -1,9 +1,19 @@
+/* 1. Definir la fuente personalizada */
+@font-face {
+    font-family: 'Asimilates';
+    src: url('../fonts/asimilates-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 2. Definir variables globales */
 :root {
     --primary: #2c3e50;
     --secondary: #3498db;
     --background: #f8f9fa;
 }
 
+/* 3. Estilos generales */
 body {
     font-family: 'Segoe UI', system-ui, sans-serif;
     background: var(--background);
@@ -27,13 +37,16 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
+/* 4. Aplicar la fuente al título */
 h1 {
+    font-family: 'Asimilates', sans-serif; /* Fuente personalizada */
     text-align: center;
-    color: var(--primary);
+    color: var(--primary); /* Usa la variable --primary */
     margin: 2rem 0;
     font-size: 2.5rem;
 }
 
+/* 5. Resto de los estilos */
 .converter-group {
     margin-bottom: 1.5rem;
 }
@@ -103,6 +116,4 @@ th {
     .container {
         grid-template-columns: 1fr 1fr;
     }
-
-
 }
