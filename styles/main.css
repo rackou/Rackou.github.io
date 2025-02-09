@@ -28,10 +28,12 @@ body {
 }
 
 h1 {
-    text-align: center;
-    color: var(--primary);
-    margin: 2rem 0;
-    font-size: 2.5rem;
+    font-family: 'Poppins', sans-serif; /* Fuente personalizada */
+    font-weight: 700; /* Grosor de la fuente (negrita) */
+    text-align: center; /* Centrar el texto */
+    color: #2c3e50; /* Color del texto */
+    margin: 2rem 0; /* Margen superior e inferior */
+    font-size: 2.5rem; /* Tamaño de la fuente */
 }
 
 .converter-group {
