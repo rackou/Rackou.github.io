@@ -74,6 +74,7 @@ button:hover {
 }
 
 .result {
+    font-family: "Jua", serif;
     margin-top: 1.5rem;
     padding: 1rem;
     background: #f8f9fa;
