@@ -1,113 +1,203 @@
 :root {
     --primary: #2c3e50;
     --secondary: #3498db;
-    --background: #f8f9fa;
+    --background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: "Sour Gummy", serif;
+    font-family: "Poppins", sans-serif;
     background: var(--background);
-    margin: 0;
-    padding: 20px;
-    min-height: 100vh;
+    color: var(--primary);
+    line-height: 1.6;
 }
 
-.container {
+.header {
+    background: var(--primary);
+    color: white;
+    padding: 1rem 2rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--secondary);
+}
+
+.section {
+    padding: 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
 }
 
-.converter-box, .table-box {
+h1, h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary);
+}
+
+.converter-container {
     background: white;
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px var(--shadow);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-h1 {
-    font-family: "Jua", serif; /* Fuente personalizada */
-    font-weight: 700; /* Grosor de la fuente (negrita) */
-    text-align: center; /* Centrar el texto */
-    color: #2c3e50; /* Color del texto */
-    margin: 2rem 0; /* Margen superior e inferior */
-    font-size: 2.8rem; /* Tamaño de la fuente */
-}
-
-.converter-group {
+.input-group {
     margin-bottom: 1.5rem;
 }
 
 label {
-    font-family: "Sour Gummy", serif;
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--primary);
     font-weight: 600;
 }
 
-input, select {
+input {
     width: 100%;
     padding: 12px;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 1rem;
+    transition: border-color 0.3s ease;
 }
 
-button {
-    font-family: "Sour Gummy", serif;
-    width: 100%;
-    padding: 15px;
+input:focus {
+    border-color: var(--secondary);
+    outline: none;
+}
+
+.button-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.button-group button {
+    padding: 10px 15px;
     background: var(--secondary);
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background 0.3s;
 }
 
-button:hover {
+.button-group button:hover {
     transform: translateY(-2px);
+    background: #2980b9;
+}
+
+#convert-button {
+    width: auto; /* Ancho automático para que no ocupe todo el contenedor */
+    padding: 10px 20px; /* Espaciado interno reducido */
+    margin-top: 1rem; /* Espacio entre los botones de escala y el botón "Convertir" */
+    background: #1abc9c; /* Color diferente (verde turquesa) */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem; /* Tamaño de fuente más pequeño */
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+#convert-button:hover {
+    transform: translateY(-2px); /* Efecto de elevación al pasar el cursor */
+    background: #16a085; /* Cambio de color al hacer hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
 }
 
 .result {
-    font-family: "Jua", serif;
     margin-top: 1.5rem;
     padding: 1rem;
     background: #f8f9fa;
     border-radius: 8px;
     text-align: center;
     font-size: 1.5rem;
+    animation: slideUp 0.5s ease-in-out;
 }
 
+.curiosidad {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1rem;
+    color: #3498db;
+    font-style: italic;
+}
+
+/* Estilo general de la tabla */
 table {
-    font-family: "Sour Gummy", serif;
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
-}
-
-th, td {
-    font-family: "Sour Gummy", serif;
-    padding: 12px;
-    border: 1px solid #dee2e6;
-    text-align: center;
+    font-family: "Poppins", sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 th {
-    background: var(--primary);
+    background: #2c3e50;
     color: white;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #dee2e6;
 }
 
-.math-formula {
+td {
+    background: #f8f9fa;
+    color: #2c3e50;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #dee2e6;
     font-size: 0.95rem;
 }
 
-@media (min-width: 768px) {
-    .container {
-        grid-template-columns: 1fr 1fr;
+/* Animaciones */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
