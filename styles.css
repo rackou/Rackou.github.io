@@ -22,12 +22,15 @@ body {
     background: var(--primary);
     color: white;
     padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 2rem;
 }
 
 .logo {
@@ -50,6 +53,20 @@ body {
 
 .nav-links a:hover {
     color: var(--secondary);
+}
+
+.language-selector button {
+    background: #1abc9c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.language-selector button:hover {
+    background: #16a085;
 }
 
 .section {
@@ -119,25 +136,29 @@ input:focus {
     background: #2980b9;
 }
 
+.centered-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
 #convert-button {
-    width: auto; /* Ancho automático para que no ocupe todo el contenedor */
-    padding: 10px 20px; /* Espaciado interno reducido */
-    margin-top: 1rem; /* Espacio entre los botones de escala y el botón "Convertir" */
-    background: #1abc9c; /* Color diferente (verde turquesa) */
+    padding: 10px 20px;
+    background: #1abc9c;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1rem; /* Tamaño de fuente más pequeño */
+    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.2s, background 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #convert-button:hover {
-    transform: translateY(-2px); /* Efecto de elevación al pasar el cursor */
-    background: #16a085; /* Cambio de color al hacer hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+    transform: translateY(-2px);
+    background: #16a085;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .result {
