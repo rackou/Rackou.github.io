@@ -33,8 +33,7 @@ body {
 
 /* 4. Aplicar la fuente al título */
 h1 {
-       font-family: 'Creepster', cursive;
-       text-align: center;
+       text-align:center;
        color: var(--primary);
        margin: 2rem 0;
        font-size: 2.5rem;
