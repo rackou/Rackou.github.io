@@ -1,10 +1,4 @@
-/* 1. Definir la fuente personalizada */
-@font-face {
-    font-family: 'Asimilates';
-    src: url('/fonts/asimilates-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+
 
 /* 2. Definir variables globales */
 :root {
@@ -39,12 +33,12 @@ body {
 
 /* 4. Aplicar la fuente al título */
 h1 {
-    font-family: 'Asimilates', sans-serif; /* Fuente personalizada */
-    text-align: center;
-    color: var(--primary); /* Usa la variable --primary */
-    margin: 2rem 0;
-    font-size: 2.5rem;
-}
+       font-family: 'Creepster', cursive;
+       text-align: center;
+       color: var(--primary);
+       margin: 2rem 0;
+       font-size: 2.5rem;
+   }
 
 /* 5. Resto de los estilos */
 .converter-group {
