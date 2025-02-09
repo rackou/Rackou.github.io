@@ -1,6 +1,50 @@
 // Variables globales
 let selectedInitialScale = "celsius";
 let selectedDestinationScale = "fahrenheit";
+let currentLanguage = "es"; // Idioma predeterminado
+
+// Textos en diferentes idiomas
+const translations = {
+    es: {
+        converterTitle: "Conversor de Temperatura Universal",
+        temperatureLabel: "Temperatura:",
+        initialScaleLabel: "Selecciona la escala inicial:",
+        destinationScaleLabel: "Selecciona la escala de destino:",
+        formulasTitle: "Fórmulas de Conversión",
+        fromToHeader: "Desde\\Hacia",
+        aboutTitle: "Acerca de",
+        aboutText: "Esta herramienta fue diseñada para facilitar la conversión entre diferentes escalas de temperatura. Utiliza fórmulas precisas y está optimizada para brindar una experiencia profesional."
+    },
+    en: {
+        converterTitle: "Universal Temperature Converter",
+        temperatureLabel: "Temperature:",
+        initialScaleLabel: "Select the initial scale:",
+        destinationScaleLabel: "Select the destination scale:",
+        formulasTitle: "Conversion Formulas",
+        fromToHeader: "From\\To",
+        aboutTitle: "About",
+        aboutText: "This tool was designed to facilitate conversion between different temperature scales. It uses precise formulas and is optimized to provide a professional experience."
+    }
+};
+
+// Cambiar idioma
+function changeLanguage(lang) {
+    currentLanguage = lang;
+    updateUI();
+}
+
+// Actualizar la interfaz según el idioma seleccionado
+function updateUI() {
+    const lang = translations[currentLanguage];
+    document.getElementById("converter-title").textContent = lang.converterTitle;
+    document.getElementById("temperature-label").textContent = lang.temperatureLabel;
+    document.getElementById("initial-scale-label").textContent = lang.initialScaleLabel;
+    document.getElementById("destination-scale-label").textContent = lang.destinationScaleLabel;
+    document.getElementById("formulas-title").textContent = lang.formulasTitle;
+    document.getElementById("from-to-header").textContent = lang.fromToHeader;
+    document.getElementById("about-title").textContent = lang.aboutTitle;
+    document.getElementById("about-text").textContent = lang.aboutText;
+}
 
 // Array de datos curiosos sobre temperatura
 const datosCuriosos = [
@@ -92,3 +136,8 @@ function convertirTemperatura() {
         </div>
     `;
 }
+
+// Inicializar la interfaz al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+    updateUI();
+});
